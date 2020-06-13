@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { Typography, Button, Form, message, Input, Icon, DatePicker } from 'antd';
+import { Button, Form, Input, DatePicker } from 'antd';
 import ImageUpload from "./sub/imageUpload";
 import axios from 'axios';
 
-const { Title } = Typography;
 const { TextArea } = Input;
 
 const Category = [
@@ -81,10 +80,10 @@ export class AddGame extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        /*if (!this.state.gameName || !this.state.gameDes || !this.state.images
+        if (!this.state.gameName || !this.state.gameDes || !this.state.images
             || !this.state.gamePrice || !this.state.gameCategory) {
             return alert('Please fill all the fields')
-        }*/
+        }
 
         const obj = {
             gameName: this.state.gameName,
@@ -99,29 +98,20 @@ export class AddGame extends Component {
             .then((res) => console.log(res.data));
 
         window.location='/'
-        //this.props.history.push("/");
-
     }
 
     render() {
         return (
-            <div
-                className="container"
-                style={{ maxWidth: "700px", margin: "2rem auto"}}
-            >
+            <div className="container" style={{ maxWidth: "700px", margin: "2rem auto"}}>
                 <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-                    <Title level={2}>
-                        {" "}
-                        Add new game status
-                    </Title>
+                    <span className="badge badge-light">
+                        <h3>Add New Game Info</h3>
+                    </span>
                 </div>
-
                 <Form onSubmit={this.onSubmit}>
                     {/* DropZone */}
                     <ImageUpload refreshFunction={this.updateFiles} />
-
-                    <br />
-                    <br />
+                    <br/>
                     <label>Game Category</label>
                     <select
                         ref="productCategory"
@@ -138,23 +128,22 @@ export class AddGame extends Component {
                             );
                         })}
                     </select>
-                    <br />
+                    <br/>
                     <label>Game Name</label>
                     <Input
                         required
                         onChange={this.onChangeGameName}
                         value={this.state.gameName}
                     />
-                    <br />
-                    <br />
+                    <br/><br/>
                     <label>Game Description</label>
                     <TextArea
+                        rows={4}
                         required
                         onChange={this.onChangeGameDes}
                         value={this.state.gameDes}
                     />
-                    <br />
-                    <br />
+                    <br/><br/>
                     <label>Game Price</label>
                     <Input
                         required
@@ -162,15 +151,10 @@ export class AddGame extends Component {
                         value={this.state.gamePrice}
                         type="number"
                     />
-                    <br />
-                    <br />
+                    <br/><br/>
                     <label>Game Release Date</label>
-
                     <DatePicker onChange={this.onChangeGameReleaseDate} />
-
-
-                    <br />
-                    <br />
+                    <br/><br/>
                     <Button type="primary" size="large" block onClick={this.onSubmit}>
                         Add
                     </Button>

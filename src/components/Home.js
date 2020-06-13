@@ -19,6 +19,7 @@ function Home() {
         getGames(variables);
     }, []);
 
+    //Fetching all games details
     const getGames = (variables) => {
         Axios.post('http://localhost:4000/games/getgames', variables).then(
             (response) => {
@@ -26,7 +27,7 @@ function Home() {
                     setGames(response.data.games);
 
                 } else {
-                    alert("Failed to fectch product datas");
+                    alert("Failed to fetch game data");
                 }
             }
         );
@@ -44,25 +45,23 @@ function Home() {
     const renderCards = Games.map((game, index) => {
         return (
             <Col key={game._id} lg={8} md={20} xs={24}>
-                <Card
-                    hoverable={true}
+                <Card hoverable={true}
                     cover={
                         <Link to={"/" + game._id}>
                             <ImageSlider images={game.images} />
                         </Link>
                     }
                 >
-                    <Meta
-                        title={game.gameName}
-                        description={`Rs.${game.gamePrice}.00`}
-                    />
-                    <div>
+                    <Meta title={game.gameName}/>
+                    <div className="additional">
+                        <Text type="warning">Category : {game.gameCategory}</Text>
+                        <br />
+                        <Text type="secondary">Release Date : {game.gameReleaseDate}</Text>
                     </div>
                 </Card>
             </Col>
         );
     }).reverse();
-
 
     return (
         <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -72,7 +71,7 @@ function Home() {
                 <SearchFeature refreshFunction={updateSearchTerms} />
             </div>
 
-            {/* Product card view  */}
+            {/* Game card view  */}
             {Games.length === 0 ? (
                 <div style={{display: "flex", height: "300px", justifyContent: "center", alignItems: "center",}}>
                     <h2>No Games yet...</h2>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Typography, Button, Form, message, Input, Icon, DatePicker } from 'antd';
-import ImageSlider from "./sub/ImageSlider";
+import { Typography, Button, Form, Input, DatePicker } from 'antd';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -50,15 +49,13 @@ class EditGame extends Component {
                     images: response.data.images,
                     gamePrice: response.data.gamePrice,
                     gameCategory: response.data.gameCategory,
-                    productTitle: response.data.gameName,
+                    gameTitle: response.data.gameName,
                     gameReleaseDate: response.data.gameReleaseDate,
                 });
-                console.log("date" + response.data.gameReleaseDate);
             })
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     onChangeGameName(e) {
@@ -100,10 +97,10 @@ class EditGame extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        /*if (!this.state.gameName || !this.state.gameDes || !this.state.images
+        if (!this.state.gameName || !this.state.gameDes || !this.state.images
            || !this.state.gamePrice || !this.state.gameCategory) {
            return alert('Please fill all the fields')
-       }*/
+       }
 
         const obj = {
             gameName: this.state.gameName,
@@ -117,33 +114,28 @@ class EditGame extends Component {
             .post('http://localhost:4000/games/update/' + this.props.match.params.id, obj)
             .then((res) => console.log(res.data));
 
-        // Redirect to Product List
-        //this.props.history.push("/storeManager");
+        // Redirect to Game List
         window.location='/manage'
     }
 
     render() {
         return (
-            <div className="container">
+            <div className="container" style={{ maxWidth: "700px", margin: "2rem auto"}}>
                 <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                     <Title level={2}>
                         {" "}
-                        <Text strong> Edit Product Details </Text>
+                        <Text strong> Edit Game Details </Text>
                     </Title>
                 </div>
                 <div >
-                    <div
-                        className="container"
-                        style={{ maxWidth: "600px", margin: "2rem auto"}}
-                    >
+                    <div>
                             <Form onSubmit={this.onSubmit}>
                                 <div style={{ textAlign: "center" }}>
                                     <Title level={3}>
                                         {" "}
-                                        <Text disabled> {this.state.productTitle} </Text>
+                                        <Text disabled> {this.state.gameTitle} </Text>
                                     </Title>
                                 </div>
-
                                 <label>Game Category</label>
                                 <select
                                     ref="productCategory"
@@ -160,23 +152,22 @@ class EditGame extends Component {
                                         );
                                     })}
                                 </select>
-                                <br />
+                                <br/>
                                 <label>Game Name</label>
                                 <Input
                                     required
                                     onChange={this.onChangeGameName}
                                     value={this.state.gameName}
                                 />
-                                <br />
-                                <br />
+                                <br/><br/>
                                 <label>Game Description</label>
                                 <TextArea
+                                    rows={4}
                                     required
                                     onChange={this.onChangeGameDes}
                                     value={this.state.gameDes}
                                 />
-                                <br />
-                                <br />
+                                <br/><br/>
                                 <label>Game Price</label>
                                 <Input
                                     required
@@ -184,23 +175,15 @@ class EditGame extends Component {
                                     value={this.state.gamePrice}
                                     type="number"
                                 />
-                                <br />
-                                <br />
+                                <br/><br/>
                                 <label>Game Release Date</label>
-
                                 <DatePicker onChange={this.onChangeGameReleaseDate} />
-
-
-                                <br />
-
-                                <br />
-                                <br />
+                                <br/><br/>
                                 <div>
                                     <Button type="primary" block onClick={this.onSubmit}>
                                         Update Details
                                     </Button>
-                                    <br />
-                                    <br />
+                                    <br/><br/>
                                 </div>
                             </Form>
                     </div>

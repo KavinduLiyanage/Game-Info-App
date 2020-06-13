@@ -16,7 +16,7 @@ class App extends Component{
     return (
         <Router>
           <div className="container">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
               <Link to={'/'} className="navbar-brand">Game Informer</Link>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">

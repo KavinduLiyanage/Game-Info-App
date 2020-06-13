@@ -33,32 +33,28 @@ class GameInfo extends Component {
                     productTitle: response.data.gameName,
                     gameReleaseDate: response.data.gameReleaseDate,
                 });
-                console.log("date" + response.data.gameReleaseDate);
             })
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     render() {
         return (
             <div>
-
-                <div className="container" style={{ maxWidth: "640px", margin: "2rem auto"}}>
+                <div className="container" style={{ maxWidth: "700px", margin: "2rem auto"}}>
                     <div style={{ textAlign: "center" }}>
                         <Title level={2}>
                             <Text strong> {this.state.gameName} </Text>
                         </Title>
-
                     </div>
+                    <ImageSlider images={this.state.images} />
+                    <br/>
                     <h4><span className="badge badge-secondary">Release Date : {this.state.gameReleaseDate}</span></h4>
-                <ImageSlider images={this.state.images} />
-                <br/>
-                    <h4><span className="badge badge-info">Price : Rs.{this.state.gamePrice}.00</span></h4>
-                    <h4><span className="badge badge-warning">Description</span></h4>
+                    <h4><span className="badge badge-secondary">Category : {this.state.gameCategory}</span></h4>
+                    <h4><span className="badge badge-secondary">Price : Rs.{this.state.gamePrice}.00</span></h4>
+                    <h5><span className="badge badge-secondary">Description</span></h5>
                     <Text type="secondary">{this.state.gameDes}</Text>
-
                 </div>
             </div>
         );

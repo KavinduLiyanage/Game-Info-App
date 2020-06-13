@@ -31,12 +31,13 @@ class ManageGames extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container" style={{ maxWidth: "900px", margin: "2rem auto"}}>
                 <h3 align="center">Games List</h3>
                 <table className="table table-striped" style={{marginTop:20}}>
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Category</th>
                         <th>Release Date</th>
                         <th>Price</th>
                         <th className="text-center" >Action</th>

@@ -21,11 +21,11 @@ class RowGame extends Component {
         return (
             <tr>
                 <td>{this.props.obj.gameName}</td>
+                <td>{this.props.obj.gameCategory}</td>
                 <td>{this.props.obj.gameReleaseDate}</td>
                 <td>Rs.{this.props.obj.gamePrice}.00</td>
                 <td>
-                    <Link
-                        to={"/edit/" + this.props.obj._id}
+                    <Link to={"/edit/" + this.props.obj._id}
                         className="btn btn-outline-dark btn-sm"
                     >
                         Edit
