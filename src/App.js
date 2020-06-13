@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import 'antd/dist/antd.css';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+
+import AddGame from "./components/addGame";
+import EditGame from "./components/editGame";
+import ListGame from "./components/listGame";
 
 class App extends Component{
 
@@ -28,9 +32,9 @@ class App extends Component{
             </nav>
 
             <Switch>
-              <Route exact path = '/add' component = { AddProduct }/>
-              <Route path = '/edit/:id' component = { EditProduct }/>
-              <Route path = '/list' component = { ListProduct }/>
+              <Route exact path = '/add' component = { AddGame }/>
+              <Route path = '/edit/:id' component = { EditGame }/>
+              <Route path = '/list' component = { ListGame }/>
             </Switch>
           </div>
         </Router>

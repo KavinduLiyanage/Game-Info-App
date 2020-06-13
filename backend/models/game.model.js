@@ -11,6 +11,16 @@ let gameSchema = new Schema({
     },
     gamePrice : {
         type : Number
+    },
+    images: {
+        type: Array,
+        default: [],
+    },
+    gameCategory: {
+        type: String,
+    },
+    gameReleaseDate: {
+        type: String,
     }
 }, {
     collection: 'game'

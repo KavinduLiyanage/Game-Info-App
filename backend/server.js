@@ -30,6 +30,8 @@ const gamesRouter = require('./routes/game.route');
 
 app.use('/games', gamesRouter);
 
+app.use('/uploads', express.static('uploads'));
+
 //PORT
 app.listen(PORT,function () {
     console.log('Server is running on port : ',PORT);
