@@ -61,12 +61,22 @@ gameRoutes.route('/add').post(function (req,res) {
 });
 
 // Defined get all games data route
-gameRoutes.route('/getgames').get(function (req,res) {
-    Game.find()
-        .exec((err, games) => {
-        if (err) return res.status(400).json({ success: false, err });
-        res.status(200).json({ success: true, games });
-    });
+gameRoutes.route('/getgames').post(function (req,res) {
+    let term = req.body.searchTerm;
+    if(term) {
+        Game.find({ gameName: { $regex: term, $options: "i" } })
+            .exec((err, games) => {
+                if (err) return res.status(400).json({ success: false, err });
+                res.status(200).json({ success: true, games });
+            });
+    }
+    else {
+        Game.find()
+            .exec((err, games) => {
+                if (err) return res.status(400).json({ success: false, err });
+                res.status(200).json({ success: true, games });
+            });
+    }
 });
 
 

@@ -48,8 +48,8 @@ function ImageUpload(props) {
                         {({ getRootProps, getInputProps }) => (
                             <div
                                 style={{
-                                    width: "300px",
-                                    height: "240px",
+                                    width: "250px",
+                                    height: "200px",
                                     border: "1px solid lightgray",
                                     display: "flex",
                                     alignItems: "center",
@@ -70,7 +70,7 @@ function ImageUpload(props) {
                 </Row>
 
                 <Row justify="space-around" align="end">
-                    <Text>Recommended ratio 640x960(JPG or PNG format)</Text>
+                    <Text>Recommended ratio 640x360(JPG or PNG)</Text>
                     <Text> </Text>
                 </Row>
             </div>
@@ -79,8 +79,8 @@ function ImageUpload(props) {
                 <div
                     style={{
                         display: "flex",
-                        width: "350px",
-                        height: "240px",
+                        width: "400px",
+                        height: "200px",
                         overflowX: "scroll",
                     }}
                 >
@@ -88,7 +88,7 @@ function ImageUpload(props) {
                     {Images.map((image, index) => (
                         <div key={index} onClick={() => onDelete(image)}>
                             <img
-                                style={{ width: "148px", height: "223px" }}
+                                style={{ width: "325px", height: "183px" }}
                                 src={`http://localhost:4000/${image}`}
                                 alt={`productImg-${index}`}
                             />

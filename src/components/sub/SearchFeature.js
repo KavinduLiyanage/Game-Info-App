@@ -8,7 +8,6 @@ function SearchFeature(props) {
 
     const onChangeSearch = (event) => {
         setSearchTerms(event.currentTarget.value);
-
         props.refreshFunction(event.currentTarget.value);
     };
 
@@ -17,7 +16,7 @@ function SearchFeature(props) {
             <Search
                 value={SearchTerms}
                 onChange={onChangeSearch}
-                placeholder="Quick search..."
+                placeholder="Search here..."
             />
         </div>
     );

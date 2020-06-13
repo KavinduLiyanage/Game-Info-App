@@ -3,12 +3,15 @@ import Axios from "axios";
 import { Col, Card, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
 import ImageSlider from "./sub/ImageSlider";
+import SearchFeature from "./sub/SearchFeature";
 
 const { Meta } = Card;
 const { Text } = Typography;
 
 function Home() {
+
     const [Games, setGames] = useState([]);
+    const [SearchTerms, setSearchTerms] = useState("");
 
     useEffect(() => {
         const variables = {};
@@ -17,7 +20,7 @@ function Home() {
     }, []);
 
     const getGames = (variables) => {
-        Axios.get('http://localhost:4000/games/getgames', variables).then(
+        Axios.post('http://localhost:4000/games/getgames', variables).then(
             (response) => {
                 if (response.data.success) {
                     setGames(response.data.games);
@@ -25,14 +28,22 @@ function Home() {
                 } else {
                     alert("Failed to fectch product datas");
                 }
-
             }
         );
     };
 
+    const updateSearchTerms = (newSearchTerm) => {
+        const variables = {
+            searchTerm: newSearchTerm,
+        };
+
+        setSearchTerms(newSearchTerm);
+        getGames(variables);
+    };
+
     const renderCards = Games.map((game, index) => {
         return (
-            <Col key={game._id} lg={10} md={20} xs={24}>
+            <Col key={game._id} lg={8} md={20} xs={24}>
                 <Card
                     hoverable={true}
                     cover={
@@ -45,31 +56,26 @@ function Home() {
                         title={game.gameName}
                         description={`Rs.${game.gamePrice}.00`}
                     />
-
                     <div>
-
                     </div>
                 </Card>
             </Col>
         );
     }).reverse();
 
+
     return (
         <div style={{ width: "75%", margin: "3rem auto" }}>
 
             {/* Search */}
+            <div style={{display: "flex", justifyContent: "flex-end", margin: "1rem auto",}}>
+                <SearchFeature refreshFunction={updateSearchTerms} />
+            </div>
 
             {/* Product card view  */}
             {Games.length === 0 ? (
-                <div
-                    style={{
-                        display: "flex",
-                        height: "300px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <h2>Loading...</h2>
+                <div style={{display: "flex", height: "300px", justifyContent: "center", alignItems: "center",}}>
+                    <h2>No Games yet...</h2>
                 </div>
             ) : (
                 <div>
