@@ -25,7 +25,7 @@ class RowGame extends Component {
                 <td>Rs.{this.props.obj.gamePrice}.00</td>
                 <td>
                     <Link
-                        to={"/storeManager/edit/" + this.props.obj._id}
+                        to={"/edit/" + this.props.obj._id}
                         className="btn btn-outline-dark btn-sm"
                     >
                         Edit

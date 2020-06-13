@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import AddGame from "./components/addGame";
 import EditGame from "./components/editGame";
 import ManageGames from "./components/manageGames";
+import GameInfo from "./components/gameInfo";
 
 class App extends Component{
 
@@ -37,6 +38,7 @@ class App extends Component{
               <Route exact path = '/add' component = { AddGame }/>
               <Route exact path = '/edit/:id' component = { EditGame }/>
               <Route exact path = '/manage' component = { ManageGames }/>
+              <Route exact path = '/:id' component = { GameInfo }/>
             </Switch>
           </div>
         </Router>

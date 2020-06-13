@@ -32,11 +32,11 @@ function Home() {
 
     const renderCards = Games.map((game, index) => {
         return (
-            <Col key={game._id} lg={6} md={8} xs={24}>
+            <Col key={game._id} lg={10} md={20} xs={24}>
                 <Card
                     hoverable={true}
                     cover={
-                        <Link to={"/storeManager/edit/" + game._id}>
+                        <Link to={"/" + game._id}>
                             <ImageSlider images={game.images} />
                         </Link>
                     }

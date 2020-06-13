@@ -87,6 +87,8 @@ gameRoutes.route('/update/:id').post(function (req, res) {
             game.gameName = req.body.gameName;
             game.gameDes = req.body.gameDes;
             game.gamePrice = req.body.gamePrice;
+            game.gameCategory = req.body.gameCategory;
+            game.gameReleaseDate = req.body.gameReleaseDate;
 
             game.save().then(game => {
                 res.json('Update Complete');
