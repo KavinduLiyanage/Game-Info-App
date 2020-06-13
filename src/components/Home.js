@@ -8,19 +8,19 @@ const { Meta } = Card;
 const { Text } = Typography;
 
 function Home() {
-    const [Products, setProducts] = useState([]);
+    const [Games, setGames] = useState([]);
 
     useEffect(() => {
         const variables = {};
 
-        getProducts(variables);
+        getGames(variables);
     }, []);
 
-    const getProducts = (variables) => {
+    const getGames = (variables) => {
         Axios.get('http://localhost:4000/games/getgames', variables).then(
             (response) => {
                 if (response.data.success) {
-                    setProducts(response.data.games);
+                    setGames(response.data.games);
 
                 } else {
                     alert("Failed to fectch product datas");
@@ -30,20 +30,20 @@ function Home() {
         );
     };
 
-    const renderCards = Products.map((product, index) => {
+    const renderCards = Games.map((game, index) => {
         return (
-            <Col key={product._id} lg={6} md={8} xs={24}>
+            <Col key={game._id} lg={6} md={8} xs={24}>
                 <Card
                     hoverable={true}
                     cover={
-                        <Link to={"/storeManager/edit/" + product._id}>
-                            <ImageSlider images={product.images} />
+                        <Link to={"/storeManager/edit/" + game._id}>
+                            <ImageSlider images={game.images} />
                         </Link>
                     }
                 >
                     <Meta
-                        title={product.gameName}
-                        description={`Rs.${product.gamePrice}.00`}
+                        title={game.gameName}
+                        description={`Rs.${game.gamePrice}.00`}
                     />
 
                     <div>
@@ -55,18 +55,12 @@ function Home() {
     }).reverse();
 
     return (
-        <div style={{ width: "75%", margin: "3rem auto", marginTop: 70 }}>
-            <div style={{ textAlign: "center" }}>
-                <h2> Available Products </h2>
-            </div>
-
-
+        <div style={{ width: "75%", margin: "3rem auto" }}>
 
             {/* Search */}
 
-
             {/* Product card view  */}
-            {Products.length === 0 ? (
+            {Games.length === 0 ? (
                 <div
                     style={{
                         display: "flex",
@@ -75,7 +69,7 @@ function Home() {
                         alignItems: "center",
                     }}
                 >
-                    <h2>No product yet...</h2>
+                    <h2>Loading...</h2>
                 </div>
             ) : (
                 <div>

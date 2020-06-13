@@ -5,6 +5,7 @@ const multer = require("multer");
 // Game Model
 let Game = require("../models/game.model");
 
+// Defined get all games data route
 gameRoutes.route('/').get(function (req,res) {
     Game.find(function (err, game) {
         if(err)
@@ -14,6 +15,7 @@ gameRoutes.route('/').get(function (req,res) {
     });
 });
 
+// Defined image routes
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "uploads/");

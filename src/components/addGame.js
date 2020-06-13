@@ -98,8 +98,8 @@ export class AddGame extends Component {
             .post('http://localhost:4000/games/add', obj)
             .then((res) => console.log(res.data));
 
-
-        this.props.history.push("/");
+        window.location='/'
+        //this.props.history.push("/");
 
     }
 

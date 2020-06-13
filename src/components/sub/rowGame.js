@@ -6,7 +6,6 @@ class RowGame extends Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
-
     }
 
     delete() {
@@ -14,16 +13,16 @@ class RowGame extends Component {
             .get('http://localhost:4000/games/delete/' + this.props.obj._id)
             .then(console.log("Deleted"))
             .catch((err) => console.log(err));
-        window.location='/storeManager/list'
+
+        window.location='/manage'
     }
 
     render() {
         return (
             <tr>
                 <td>{this.props.obj.gameName}</td>
-
-                <td className="text-center">Rs.{this.props.obj.gamePrice}.00</td>
-
+                <td>{this.props.obj.gameReleaseDate}</td>
+                <td>Rs.{this.props.obj.gamePrice}.00</td>
                 <td>
                     <Link
                         to={"/storeManager/edit/" + this.props.obj._id}
@@ -32,15 +31,6 @@ class RowGame extends Component {
                         Edit
                     </Link>
                 </td>
-                <td >
-                    <Link
-                        to={"/storeManager/editDis/" + this.props.obj._id}
-                        className="btn btn-outline-dark btn-sm"
-                    >
-                        Manage Discount
-                    </Link>
-                </td>
-
                 <td>
                     <button onClick={this.delete} className="btn btn-outline-danger btn-sm">
                         Delete

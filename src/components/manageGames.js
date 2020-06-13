@@ -23,18 +23,6 @@ class ManageGames extends Component {
             })
     }
 
-    componentDidUpdate() {
-        axios.get('http://localhost:4000/games')
-            .then(response => {
-                this.setState({
-                    game : response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }
-
     gameList() {
         return this.state.game.map( function (object, i) {
             return <RowGame obj={object} key={i}/>;
@@ -44,14 +32,14 @@ class ManageGames extends Component {
     render() {
         return (
             <div>
-                <h3 align="center">Products List</h3>
+                <h3 align="center">Games List</h3>
                 <table className="table table-striped" style={{marginTop:20}}>
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Description</th>
+                        <th>Release Date</th>
                         <th>Price</th>
-                        <th colSpan="2">Action</th>
+                        <th className="text-center" >Action</th>
                     </tr>
                     </thead>
                     <tbody>
