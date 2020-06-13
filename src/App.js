@@ -6,7 +6,7 @@ import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 import AddGame from "./components/addGame";
 import EditGame from "./components/editGame";
-import ListGame from "./components/listGame";
+import Home from "./components/Home";
 
 class App extends Component{
 
@@ -34,7 +34,7 @@ class App extends Component{
             <Switch>
               <Route exact path = '/add' component = { AddGame }/>
               <Route path = '/edit/:id' component = { EditGame }/>
-              <Route path = '/list' component = { ListGame }/>
+              <Route path = '/' component = { Home }/>
             </Switch>
           </div>
         </Router>

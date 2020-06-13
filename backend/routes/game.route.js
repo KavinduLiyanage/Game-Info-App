@@ -51,13 +51,13 @@ gameRoutes.route('/add').post(function (req,res) {
 
 // Defined get all games data route
 gameRoutes.route('/').get(function (req,res) {
-    Game.find(function (err, game) {
-        if(err)
-            console.log(err);
-        else
-            res.json(game);
+    Game.find()
+        .exec((err, games) => {
+        if (err) return res.status(400).json({ success: false, err });
+        res.status(200).json({ success: true, games });
     });
 });
+
 
 // Defined get specific game details using id
 gameRoutes.route('/edit/:id').get(function (req,res) {
