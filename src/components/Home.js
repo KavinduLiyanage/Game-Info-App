@@ -17,7 +17,7 @@ function Home() {
     }, []);
 
     const getProducts = (variables) => {
-        Axios.get('http://localhost:4000/games/', variables).then(
+        Axios.get('http://localhost:4000/games/getgames', variables).then(
             (response) => {
                 if (response.data.success) {
                     setProducts(response.data.games);
@@ -47,7 +47,7 @@ function Home() {
                     />
 
                     <div>
-                        
+
                     </div>
                 </Card>
             </Col>
