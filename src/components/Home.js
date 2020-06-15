@@ -64,8 +64,10 @@ function Home() {
     }).reverse();
 
     return (
-        <div style={{ width: "75%", margin: "3rem auto" }}>
-
+        <div style={{ width: "75%", margin: "1rem auto" }}>
+            <div style={{ textAlign: "center"}}>
+                <h2><Text strong> Welcome to Game Informer </Text></h2>
+            </div>
             {/* Search */}
             <div style={{display: "flex", justifyContent: "flex-end", margin: "1rem auto",}}>
                 <SearchFeature refreshFunction={updateSearchTerms} />
